@@ -24,8 +24,6 @@
 
 - The vast majority of rules compiled with YARA came from https://github.com/Yara-Rules/rules
 
-
-"""
 # TODO Research:
 - gather a variety of pre-compiled rules and offer that option via UI
 
@@ -42,4 +40,3 @@ TODO: collect linux and multi rules
 - ESET
 folder url: https://github.com/eset/malware-ioc
 TODO: inspect 1st
-""" 
