@@ -14,7 +14,7 @@
 - pandas==1.5.3
 - streamlit==1.21.0
 - streamlit-authenticator==0.2.1
-- yara-python==4.3.0
+- yara-python==4.2.3
 
 ## Usage
 
