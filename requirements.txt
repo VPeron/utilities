@@ -1,0 +1,5 @@
+streamlit
+cryptography
+pandas
+yara-python
+streamlit_authenticator

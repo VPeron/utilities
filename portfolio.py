@@ -1,0 +1,84 @@
+import streamlit as st
+import streamlit_authenticator as stauth
+
+from utils.malware_detection import app
+from utils.file_encryption import encrypt_main
+
+
+
+# Set Streamlit app UI config
+st.set_page_config(page_title="Malware Detector", page_icon="🗝️", layout="wide")
+
+# hide pandas default table index in st
+hide_table_row_index = """
+            <style>
+            thead tr th:first-child {display:none}
+            tbody th {display:none}
+            </style>
+            """
+# Inject CSS with Markdown
+st.markdown(hide_table_row_index, unsafe_allow_html=True)
+
+# insert footer app wide
+hide_streamlit_style = """
+    <style>
+    
+    footer {
+        visibility:hidden;
+    }
+    footer:after {
+        content: 'V Peron Utilities ®️';
+        visibility: visible;
+        display: block;
+        position: relative;
+        #background-color: red;
+        padding: 5px;
+        top: 2px;
+    }
+    </style>
+"""
+# Inject CSS with Markdown
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+
+def front_door():
+    # login widget via streamlit_authenticator 
+    authenticator = stauth.Authenticate(
+        dict(st.secrets["credentials"]),
+        st.secrets["cookie"]["name"],
+        st.secrets["cookie"]["key"],
+        st.secrets["cookie"]["expiry_days"],
+        st.secrets["preauthorized"],
+    )
+    
+    login_radio_placeholder = st.empty()
+    placeholder = st.empty()
+    placeholder.image('http://www.hummingbirds.net/images/vault.jpg', width=600)
+
+    st.sidebar.header('Login Form')
+    name, authentication_status, username = authenticator.login("Login", "sidebar")
+    if authentication_status:
+        authenticator.logout("Logout", "sidebar")
+        login_radio_placeholder.empty()
+        st.sidebar.info(f"Welcome *{name}*")
+        placeholder.empty()
+    elif authentication_status == False:
+        st.sidebar.error("Username/password is incorrect")
+    elif authentication_status == None:
+        st.sidebar.info("Please enter your username and password")
+
+
+def main():
+    # run app
+    if st.session_state['username']:
+        page_choice = st.sidebar.radio('Pages', ('Malware Detection', 'File Encryption'))
+        if page_choice == 'Malware Detection':
+            app()
+        if page_choice == 'File Encryption':
+            encrypt_main()
+
+
+if __name__ == "__main__":
+    front_door()
+    if st.session_state["authentication_status"]:
+        main()
