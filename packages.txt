@@ -3,4 +3,4 @@ libtool
 make
 gcc
 pkg-config
-yara
+yara --compile
