@@ -5,10 +5,8 @@ import streamlit as st
 from cryptography.fernet import Fernet
 
 
-
 def validate_file(filename):
     supported_extentions = [".csv", ".txt", ".pdf"]
-    
     file_extension = pathlib.Path(filename).suffix
     if file_extension in supported_extentions:
         return True
@@ -40,9 +38,7 @@ def encrypt_main():
     with head_col_1:
         st.write("")
     with head_col_2:
-        # st.title("Utility Tools Collection")
         st.header("🔒 Cryptography 🔑")
-        
     with head_col_3:
         st.write("")
 
@@ -64,8 +60,6 @@ def encrypt_main():
             input_file_type = uploaded_file.type
             input_file_size = uploaded_file.size
             st.info(f"""Type: {input_file_type} | Size: {input_file_size} -> Upload your key above""")
-            
-            #file_date = datetime.date(datetime.today())
             bytes_data = uploaded_file.getvalue()  # get file bytes data
             # get user key
             uploaded_key = placeholder.file_uploader("Upload keyfile. You will need one to lock and unlock your files", key="key_file_enc")
@@ -86,7 +80,6 @@ def encrypt_main():
         st.write("Get your keyfile ready.")
         uploaded_file = st.file_uploader("Upload file to unlock", key="dec_file")
         if uploaded_file is not None and validate_file(uploaded_file.name):
-            #file_date = datetime.date(datetime.today())
             bytes_data = uploaded_file.getvalue()  # get file bytes data
             file_extension = pathlib.Path(uploaded_file.name).suffix
             decript_file_content(bytes_data, file_extension)
