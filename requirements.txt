@@ -1,5 +1,5 @@
+yara-python==4.2.x
 streamlit
 cryptography
 pandas
-yara-python
 streamlit_authenticator
