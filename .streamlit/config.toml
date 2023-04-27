@@ -1,0 +1,13 @@
+[theme]
+base="dark"
+primaryColor="green"
+
+[client]
+# Whether to enable st.cache.
+# Default: true
+caching = false
+
+[server]
+# Enable serving files from a `static` directory in the running app's directory.
+# Default: false
+enableStaticServing = true
