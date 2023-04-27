@@ -3,11 +3,12 @@ import streamlit_authenticator as stauth
 
 from utils.malware_detection import app
 from utils.file_encryption import encrypt_main
+from utils.about import profile
 
 
 
 # Set Streamlit app UI config
-st.set_page_config(page_title="Malware Detector", page_icon="🗝️", layout="wide")
+st.set_page_config(page_title="V Peron", page_icon="🗝️", layout="wide")
 
 # hide pandas default table index in st
 hide_table_row_index = """
@@ -71,11 +72,13 @@ def front_door():
 def main():
     # run app
     if st.session_state['username']:
-        page_choice = st.sidebar.radio('Pages', ('Malware Detection', 'File Encryption'))
+        page_choice = st.sidebar.radio('Pages', ('Malware Detection', 'File Encryption', 'About'))
         if page_choice == 'Malware Detection':
             app()
         if page_choice == 'File Encryption':
             encrypt_main()
+        if page_choice == 'About':
+            profile()
 
 
 if __name__ == "__main__":

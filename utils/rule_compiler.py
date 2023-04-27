@@ -12,7 +12,7 @@ NOTE: run from main directory as all paths are relative from there
 
 class RuleCompiler:
     def __init__(self) -> None:
-        # Compiles all rules in folder_path together
+        # Compiles all rules in folder_path
         self.folder_path = 'rules'
         self.filenames = []
         self.logger = get_custom_logger('compiler')
@@ -33,9 +33,7 @@ class RuleCompiler:
                 self.filenames.append(temp_file_path)
 
         self.compiling_indexer = {str(idx+1): item for idx, item in enumerate(self.filenames)}
-       
         self.rules = yara.compile(filepaths=self.compiling_indexer)
-        
         self.rules.save(f'{new_filename}')
         end = perf_counter()
         self.logger.info(f"{len(self.compiling_indexer)} Rules Compiled in {end - start:.4f} seconds")

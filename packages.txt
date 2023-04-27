@@ -1,6 +1,0 @@
-automake
-libtool
-make
-gcc
-pkg-config
-yara
