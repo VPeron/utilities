@@ -1,4 +1,4 @@
-yara-python==4.3.0
+yara-python==4.2.3
 streamlit
 cryptography
 pandas
