@@ -13,7 +13,7 @@ NOTE: run from main directory as all paths are relative from there
 class RuleCompiler:
     def __init__(self) -> None:
         # Compiles all rules in folder_path
-        self.folder_path = 'rules'
+        self.folder_path = '/home/vini/Personal/portifolio/portfolio/rules'
         self.filenames = []
         self.logger = get_custom_logger('compiler')
         self.categories = {}
