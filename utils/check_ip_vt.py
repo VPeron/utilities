@@ -18,7 +18,7 @@ def get_ip_scan_response(ip):
     if response.status_code == 200:
         return response.json()
     else:
-        return response.status
+        return response.status_code
 
 def check_ip_addr():
     st.header('Enter an Ip Address for Analysis')
