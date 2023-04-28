@@ -3,8 +3,8 @@ import streamlit_authenticator as stauth
 from streamlit_player import st_player
 
 
-from utils.malware_detection import app
 from utils.file_encryption import encrypt_main
+from utils.check_ip_vt import vt_main
 from utils.about import profile
 
 
@@ -75,9 +75,9 @@ def main():
     st_player('https://soundcloud.com/vini-peron/sets/on-the-road')
     # run app
     if st.session_state['username']:
-        page_choice = st.sidebar.radio('Pages', ('Malware Detection', 'File Encryption', 'About'))
-        if page_choice == 'Malware Detection':
-            app()
+        page_choice = st.sidebar.radio('Pages', ('VirusTotal Analyzer', 'File Encryption', 'About'))
+        if page_choice == 'VirusTotal Analyzer':
+            vt_main()
         if page_choice == 'File Encryption':
             encrypt_main()
         if page_choice == 'About':
