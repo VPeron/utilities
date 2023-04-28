@@ -54,7 +54,6 @@ def front_door():
         st.secrets["preauthorized"],
     )
     
-    login_radio_placeholder = st.empty()
     placeholder = st.empty()
     placeholder.image('http://www.hummingbirds.net/images/vault.jpg', width=600)
 
@@ -62,7 +61,6 @@ def front_door():
     name, authentication_status, username = authenticator.login("Login", "sidebar")
     if authentication_status:
         authenticator.logout("Logout", "sidebar")
-        login_radio_placeholder.empty()
         st.sidebar.info(f"Welcome *{name}*")
         placeholder.empty()
     elif authentication_status == False:

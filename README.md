@@ -25,3 +25,7 @@
 # References:
 
 - Virus Total API: https://developers.virustotal.com/reference/overview
+
+# TODO:
+
+- API call rate control
