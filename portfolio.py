@@ -4,7 +4,7 @@ from streamlit_player import st_player
 
 
 from utils.file_encryption import encrypt_main
-from utils.check_ip_vt import vt_main
+from utils.ip_file_analyzer_vt import vt_main
 from utils.about import profile
 
 
