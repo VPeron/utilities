@@ -16,9 +16,9 @@ def get_ip_scan_response(ip):
     headers = {"accept": "application/json", "x-apikey": VT_API_KEY}
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
-        return response.json()
+        return response.json(), response.status_code
     else:
-        return {'status code': response.status_code}
+        return 'No results', response.status_code
 
 def check_ip_addr():
     st.header('Enter an Ip Address for Analysis')
@@ -26,8 +26,9 @@ def check_ip_addr():
     if st.button('Start Scan'):
         # make api call
         response = get_ip_scan_response(ip)
-        result = dict(response)['data']['attributes']['last_analysis_stats']
-        if result:
+        
+        if response[1] == 200:
+            result = dict(response[0])['data']['attributes']['last_analysis_stats']
             st.info('A number of companies have cross checked this IP address. See the result summary below or check the full report.')
             res_df = pd.DataFrame(result, index=[0])
             res_df.reset_index(inplace=True, drop=True)
