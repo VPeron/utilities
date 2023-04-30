@@ -3,3 +3,4 @@ cryptography
 pandas
 streamlit_authenticator
 streamlit-player
+vt-py
