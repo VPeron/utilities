@@ -53,7 +53,7 @@ def encrypt_main():
             generate_new_key()
 
         placeholder = st.empty()
-        uploaded_file = placeholder.file_uploader("Upload file to lock", key="main_file")
+        uploaded_file = placeholder.file_uploader("Upload file to lock", key="main_file", type=['csv', 'txt'])
         if uploaded_file is not None and validate_file(uploaded_file.name):
             # only simple file formats for now
             input_file_name = uploaded_file.name
