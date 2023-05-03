@@ -76,7 +76,6 @@ def main():
     st_player('https://soundcloud.com/vini-peron/sets/on-the-road')
     # run app
     if st.session_state['username']:
-        logger.info(f"{st.session_state['username']} logged in")
         page_choice = st.sidebar.radio('Pages', ('VirusTotal Analyzer', 'File Encryption', 'About'))
         if page_choice == 'VirusTotal Analyzer':
             vt_main()
@@ -89,4 +88,5 @@ def main():
 if __name__ == "__main__":
     front_door()
     if st.session_state["authentication_status"]:
+        logger.info(f"{st.session_state['username']} logged in")
         main()
