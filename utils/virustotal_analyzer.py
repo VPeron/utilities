@@ -12,16 +12,18 @@ logger = get_custom_logger('api_call')
 VT_API_KEY = st.secrets['vt_api_key']
 VT_API_URL = "https://www.virustotal.com/vtapi/v2/file/scan"
 
+
 st.cache(ttl=300)
 def get_ip_scan_response(ip):
-    logger.info('get_ip_scan')
     url = f"https://www.virustotal.com/api/v3/ip_addresses/{ip}"
     headers = {"accept": "application/json", "x-apikey": VT_API_KEY}
     response = requests.get(url, headers=headers)
+    logger.info('get_ip_scan')
     if response.status_code == 200:
         return response.json(), response.status_code
     else:
         return 'No results', response.status_code
+
 
 def check_ip_addr():
     st.header('Scan IP Address')
@@ -46,7 +48,6 @@ def check_ip_addr():
     
 
 def scan_file(client):
-    logger.info('scan_file')
     st.header('Scan File')
     uploaded_file = st.file_uploader("Upload file", key="main_file")
     if uploaded_file is not None:
@@ -54,22 +55,23 @@ def scan_file(client):
         file_obj = StringIO(uploaded_file.getvalue().decode("utf-8"))
         with st.spinner('Scanning File, this may take a while'):
             analysis = client.scan_file(file_obj, wait_for_completion=True)
+            logger.info('scan_file')
         return analysis
     
 
 def scan_url(client):
-    logger.info('scan_url')
     st.header('Scan URL')
     target_url = st.text_input("Enter URL", key="main_url")
     if st.button('Scan URL', key='url scan confirm'):
         with st.spinner('Scanning URL, this may take a while'):
             analysis = client.scan_url(target_url, wait_for_completion=True)
+            logger.info('scan_url')
             return analysis
 
 
 def display_result(stats, result):
-    st.write(pd.DataFrame(stats, index=['# of vendors']))
-    if st.checkbox('full report'):
+    st.write(pd.DataFrame(stats, index=['# of AVs']))
+    if st.checkbox('full list report'):
         st.write(result)
 
 
