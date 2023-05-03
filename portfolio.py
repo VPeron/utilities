@@ -2,6 +2,7 @@ import streamlit as st
 import streamlit_authenticator as stauth
 from streamlit_player import st_player
 
+from utils.custom_logger import get_custom_logger
 from utils.file_encryption import encrypt_main
 from utils.virustotal_analyzer import vt_main
 from utils.about import profile
@@ -9,6 +10,9 @@ from utils.about import profile
 
 # Set Streamlit app UI config
 st.set_page_config(page_title="V Peron", page_icon="🗝️", layout="wide")
+
+# init logger
+logger = get_custom_logger('login')
 
 # hide pandas default table index in st
 hide_table_row_index = """
@@ -63,6 +67,7 @@ def front_door():
         placeholder.empty()
     elif authentication_status == False:
         st.sidebar.error("Username/password is incorrect")
+        logger.info("Username/password is incorrect")
     elif authentication_status == None:
         st.sidebar.info("Please enter your username and password")
 
@@ -71,6 +76,7 @@ def main():
     st_player('https://soundcloud.com/vini-peron/sets/on-the-road')
     # run app
     if st.session_state['username']:
+        logger.info(f"{st.session_state['username']} logged in")
         page_choice = st.sidebar.radio('Pages', ('VirusTotal Analyzer', 'File Encryption', 'About'))
         if page_choice == 'VirusTotal Analyzer':
             vt_main()
