@@ -82,23 +82,24 @@ This means the scan may take a while. Get a coffee.\n
 You can hide the long version of the scans by clicking on the first blue arrow atop.
             """)
     
-    with vt.Client(VT_API_KEY) as client:
-        # scan file
-        file_scan_report = scan_file(client)
-        if file_scan_report:
-            stats = file_scan_report.to_dict()['attributes']['stats']
-            result = file_scan_report.to_dict()['attributes']['results']
-            display_result(stats, result)
-        
-        st.divider()
-        
-        # scan url
-        url_scan_report = scan_url(client)
-        if url_scan_report:
-            stats = url_scan_report.to_dict()['attributes']['stats']
-            result = url_scan_report.to_dict()['attributes']['results']
-            display_result(stats, result)
+    if st.checkbox('Scan file or Url'):
+        with vt.Client(VT_API_KEY) as client:
+            # scan file
+            file_scan_report = scan_file(client)
+            if file_scan_report:
+                stats = file_scan_report.to_dict()['attributes']['stats']
+                result = file_scan_report.to_dict()['attributes']['results']
+                display_result(stats, result)
+            
+            st.divider()
+            
+            # scan url
+            url_scan_report = scan_url(client)
+            if url_scan_report:
+                stats = url_scan_report.to_dict()['attributes']['stats']
+                result = url_scan_report.to_dict()['attributes']['results']
+                display_result(stats, result)
     st.divider()
-    
-    # scan ip addr
-    check_ip_addr()
+    if st.checkbox('Scan IP Addres'):
+        # scan ip addr
+        check_ip_addr()
