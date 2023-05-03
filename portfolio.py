@@ -64,6 +64,7 @@ def front_door():
     if authentication_status:
         authenticator.logout("Logout", "sidebar")
         st.sidebar.info(f"Welcome *{name}*")
+        logger.info(f"{st.session_state['username']} logged in")
         placeholder.empty()
     elif authentication_status == False:
         st.sidebar.error("Username/password is incorrect")
@@ -84,9 +85,8 @@ def main():
         if page_choice == 'About':
             profile()
 
-
 if __name__ == "__main__":
     front_door()
     if st.session_state["authentication_status"]:
-        logger.info(f"{st.session_state['username']} logged in")
+        
         main()
