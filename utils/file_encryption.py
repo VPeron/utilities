@@ -6,7 +6,7 @@ from cryptography.fernet import Fernet
 
 
 def validate_file(filename):
-    supported_extentions = [".csv", ".txt", ".pdf"]
+    supported_extentions = [".csv", ".txt"]
     file_extension = pathlib.Path(filename).suffix
     if file_extension in supported_extentions:
         return True

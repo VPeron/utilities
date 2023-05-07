@@ -31,14 +31,12 @@ def check_ip_addr():
     if st.button('Start Scan'):
         # make api call
         response = get_ip_scan_response(ip)
-        
         if response[1] == 200:
             result = dict(response[0])['data']['attributes']['last_analysis_stats']
             st.info('A number of companies have cross checked this IP address. See the result summary below or check the full report.')
             res_df = pd.DataFrame(result, index=[0])
             res_df.reset_index(inplace=True, drop=True)
             st.write(res_df[['harmless', 'malicious', 'suspicious', 'undetected', 'timeout']])
-            
             if result['malicious'] > 3 or result['suspicious'] > 5:
                 st.warning('### IP Alert ###', ip)
                 st.write('malicious or suspicious IP Addr')
@@ -51,7 +49,7 @@ def scan_file(client):
     st.header('Scan File')
     uploaded_file = st.file_uploader("Upload file", key="main_file")
     if uploaded_file is not None:
-        st.info(f"file size: {uploaded_file.size} - file type: {uploaded_file.type}")
+        st.info(f"file size: {uploaded_file.size} | file type: {uploaded_file.type}")
         file_obj = StringIO(uploaded_file.getvalue().decode("utf-8"))
         with st.spinner('Scanning File, this may take a while'):
             analysis = client.scan_file(file_obj, wait_for_completion=True)
@@ -102,6 +100,6 @@ You can hide the long version of the scans by clicking on the first blue arrow a
                 result = url_scan_report.to_dict()['attributes']['results']
                 display_result(stats, result)
     st.divider()
-    if st.checkbox('Scan IP Addres'):
+    if st.checkbox('Scan IP Address'):
         # scan ip addr
         check_ip_addr()
