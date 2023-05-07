@@ -72,7 +72,7 @@ def encrypt_main():
                 # DOWNLOAD
                 # to keep this very simple we preserve the original file name and extension.
                 # decrypting the file should also reformat it properly with the correct extention in place.
-                st.download_button('Download encrypted file', contents_encrypted, file_name=f"enc_{input_file_name}_file_date")
+                st.download_button('Download encrypted file', contents_encrypted, file_name=f"enc_{input_file_name}")
     
     with body_col2:
         # col 2
