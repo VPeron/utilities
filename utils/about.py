@@ -12,3 +12,7 @@ They have been created for my personal use and to showcase some of my programs.
     st.write('[My Linkedin](https://www.linkedin.com/in/vinicius-p-9a9197270/)')
     st.write('Here you can watch my presentation for the Lewagon Data Science Bootcamp Capstone project: Chess Engine Detection')
     st.video('https://www.youtube.com/watch?v=d_SOksxtVzs&t=2197s', start_time=2197)
+    st.markdown("""
+# My Holopin Badges       
+[![@vperon's Holopin badges](https://holopin.me/vperon)](https://holopin.io/@vperon)
+                """)

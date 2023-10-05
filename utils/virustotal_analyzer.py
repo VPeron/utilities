@@ -61,15 +61,15 @@ def scan_url(client):
     st.header('Scan URL')
     target_url = st.text_input("Enter URL", key="main_url")
     if st.button('Scan URL', key='url scan confirm'):
-        with st.spinner('Scanning URL, this may take a while'):
-            analysis = client.scan_url(target_url, wait_for_completion=True)
-            logger.info('scan_url')
-            return analysis
+        #with st.spinner('Scanning URL, this may take a while'):
+        analysis = client.scan_url(target_url, wait_for_completion=True)
+        logger.info('scan_url')
+        return analysis
 
 
 def display_result(stats, result):
     st.write(pd.DataFrame(stats, index=['# of AVs']))
-    if st.checkbox('full list report'):
+    if st.toggle('full list report'):
         st.write(result)
 
 
@@ -99,6 +99,7 @@ You can hide the long version of the scans by clicking on the first blue arrow a
                 stats = url_scan_report.to_dict()['attributes']['stats']
                 result = url_scan_report.to_dict()['attributes']['results']
                 display_result(stats, result)
+                
     st.divider()
     if st.checkbox('Scan IP Address'):
         # scan ip addr
