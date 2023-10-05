@@ -6,6 +6,7 @@ from utils.custom_logger import get_custom_logger
 from utils.file_encryption import encrypt_main
 from utils.virustotal_analyzer import vt_main
 from utils.about import profile
+from utils.file_integrity import hash_calculator
 
 
 # Set Streamlit app UI config
@@ -77,13 +78,15 @@ def main():
     st_player('https://soundcloud.com/vini-peron/sets/on-the-road')
     # run app
     if st.session_state['username']:
-        page_choice = st.sidebar.radio('Pages', ('VirusTotal Analyzer', 'File Encryption', 'About'))
+        page_choice = st.sidebar.radio('Pages', ('VirusTotal Analyzer', 'File Encryption', 'File Hash', 'About'))
         if page_choice == 'VirusTotal Analyzer':
             vt_main()
         if page_choice == 'File Encryption':
             encrypt_main()
         if page_choice == 'About':
             profile()
+        if page_choice == 'File Hash':
+            hash_calculator()
 
 if __name__ == "__main__":
     front_door()
