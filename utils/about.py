@@ -13,6 +13,6 @@ They have been created for my personal use and to showcase some of my programs.
     st.write('Here you can watch my presentation for the Lewagon Data Science Bootcamp Capstone project: Chess Engine Detection')
     st.video('https://www.youtube.com/watch?v=d_SOksxtVzs&t=2197s', start_time=2197)
     st.markdown("""
-# My Holopin Badges       
-[![@vperon's Holopin badges](https://holopin.me/vperon)](https://holopin.io/@vperon)
+# Holopin Badges
+[![@vperon's Holopin badges full Holopin profile](https://holopin.me/vperon)](https://holopin.io/@vperon)
                 """)

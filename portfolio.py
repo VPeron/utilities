@@ -7,6 +7,7 @@ from utils.file_encryption import encrypt_main
 from utils.virustotal_analyzer import vt_main
 from utils.about import profile
 from utils.file_integrity import hash_calculator
+from utils.img_bkground import set_background
 
 
 # Set Streamlit app UI config
@@ -58,9 +59,10 @@ def front_door():
     )
     
     placeholder = st.empty()
-    placeholder.image('http://www.hummingbirds.net/images/vault.jpg', width=600)
+    #placeholder.image('http://www.hummingbirds.net/images/vault.jpg', width=600)
+    placeholder.image('static/vault.jpg', width=700)
 
-    st.sidebar.header('Login Form')
+    st.sidebar.header('Sidebar')
     name, authentication_status, username = authenticator.login("Login", "sidebar")
     if authentication_status:
         authenticator.logout("Logout", "sidebar")
